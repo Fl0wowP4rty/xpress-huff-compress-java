@@ -16,7 +16,7 @@ public class InputBitStream {
         this.in = in.array();
         this.offset = in.arrayOffset();
         this.position = 4;
-        this.mask = getInt16(this.in, this.offset) << 16 | getInt16(this.in, this.offset + 2);
+        this.mask = getUInt16(this.in, this.offset) << 16 | getUInt16(this.in, this.offset + 2);
         this.bits = 32;
     }
 

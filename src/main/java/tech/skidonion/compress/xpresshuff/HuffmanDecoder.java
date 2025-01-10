@@ -76,7 +76,6 @@ public class HuffmanDecoder {
         return true;
     }
 
-
     public short decodeSymbol(InputBitStream bits) {
         int n, r = bits.availableBits();
         long x = (r < NUM_BITS_MAX) ? (((long) bits.peek(r) << (NUM_BITS_MAX - r)) & 0xFFFFFFFFL) : bits.peek(NUM_BITS_MAX);
