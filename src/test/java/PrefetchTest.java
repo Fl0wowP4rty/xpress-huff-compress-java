@@ -11,7 +11,9 @@ import java.nio.file.Paths;
 public class PrefetchTest {
     @Test
     void read() {
-        try (InputStream stream = PrefetchTest.class.getResourceAsStream("/QQ.EXE-028D401B.pf");) {
+        try (InputStream stream = PrefetchTest.class.getResourceAsStream("/JAVA.EXE-DE93B7A0.pf");) {
+//        try (InputStream stream = PrefetchTest.class.getResourceAsStream("/QQ.EXE-028D401B.pf");) {
+
             if (stream == null) return;
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];

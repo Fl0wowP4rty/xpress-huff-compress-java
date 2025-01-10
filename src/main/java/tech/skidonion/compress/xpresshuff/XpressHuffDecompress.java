@@ -18,8 +18,8 @@ public class XpressHuffDecompress {
         long len;
         int off;
         short sym;
-
-        while (_out.position() < CHUNK_SIZE || !bstr.maskIsZero()) {
+        int out_end_chunk = _out.position() + CHUNK_SIZE;
+        while (_out.position() < out_end_chunk || !bstr.maskIsZero()) {
             sym = decoder.decodeSymbol(bstr);
             if ((sym == INVALID_SYMBOL)) {
                 System.err.print("XPRESS Huffman Decompression Error: Invalid data: Unable to read enough bits for symbol\n");
@@ -98,7 +98,9 @@ public class XpressHuffDecompress {
                 System.err.print("Xpress Huffman Decompression Error: Invalid Data: Unable to resolve Huffman codes\n");
                 return MSCOMP_DATA_ERROR;
             }
-            status = chunk(in.slice(), out, decoder);
+            ByteBuffer _in = in.slice();
+            status = chunk(_in, out, decoder);
+            in.position(in.position() + _in.position());
             if ((status.getStatus() < MSCOMP_OK.getStatus())) {
                 return status;
             }

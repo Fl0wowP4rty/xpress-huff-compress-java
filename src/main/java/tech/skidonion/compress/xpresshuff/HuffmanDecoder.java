@@ -36,7 +36,7 @@ public class HuffmanDecoder {
         this.lims[0] = 0;
         this.lims[NUM_BITS_MAX] = (short) (maxValue & 0xFFFF);
         for (int len = 1; len <= NUM_TABLE_BITS; ++len) {
-            int inc = (cnts[len] & 0xFFFF) << (NUM_BITS_MAX - len);
+            int inc = ((cnts[len] & 0xFFFF) << (NUM_BITS_MAX - len) & 0xFFFF);
             if (last + inc > maxValue) {
                 return false;
             }
@@ -46,7 +46,7 @@ public class HuffmanDecoder {
             index = limit;
         }
         for (int len = NUM_TABLE_BITS + 1; len < NUM_BITS_MAX; ++len) {
-            int inc = (cnts[len] & 0xFFFF) << (NUM_BITS_MAX - len);
+            int inc = ((cnts[len] & 0xFFFF) << (NUM_BITS_MAX - len) & 0xFFFF);
             if (last + inc > maxValue) {
                 return false;
             }
